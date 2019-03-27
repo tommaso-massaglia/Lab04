@@ -30,9 +30,10 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </HBox>
-            <HBox>
+            <HBox spacing="5.0">
                <children>
                   <Button fx:id="btnCercaIscrittiCorso" mnemonicParsing="false" onAction="#doCercaIscrittiCorso" text="Cerca iscritti corso" />
+                  <Button fx:id="btnCerca" mnemonicParsing="false" onAction="#doCerca" text="Cerca" />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" left="10.0" right="5.0" top="5.0" />

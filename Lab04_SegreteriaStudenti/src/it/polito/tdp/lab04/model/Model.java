@@ -1,5 +1,6 @@
 package it.polito.tdp.lab04.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,7 +68,7 @@ public class Model {
 		}
 		return elenco;
 	}
-	
+
 	public String elencoCorsiIscritti(String matricola) {
 		StudenteDAO studentetemp = new StudenteDAO();
 		String elenco = "";
@@ -76,6 +77,29 @@ public class Model {
 			if (s.getMatricola().equals(matricola)) {
 				for (String c : studentetemp.getCorsiIscritto(s)) {
 					elenco += corsi.get(c).toString() + "\n";
+				}
+			}
+
+		}
+		return elenco;
+	}
+
+	public boolean controllaIscritto(String matricola, String nomecorso) {
+
+		if (this.elencoIscritti(nomecorso).contains(matricola)) {
+			return true;
+		}
+		return false;
+	}
+
+	public ArrayList<String> elencoIscritti(String nomecorso) {
+		CorsoDAO corsitemp = new CorsoDAO();
+		ArrayList<String> elenco = new ArrayList<String>();
+		this.setElencoStudenti();
+		for (Corso c : corsi.values()) {
+			if (c.getNome().equals(nomecorso)) {
+				for (String s : corsitemp.getStudentiIscrittiAlCorso(c)) {
+					elenco.add(s);
 				}
 			}
 

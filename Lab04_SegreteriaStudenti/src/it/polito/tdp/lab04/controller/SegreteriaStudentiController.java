@@ -49,6 +49,9 @@ public class SegreteriaStudentiController {
 
 	@FXML
 	private Button btnReset;
+	
+	@FXML
+    private Button btnCerca;
 
 	@FXML
 	void doCercaCorsi(ActionEvent event) {
@@ -83,6 +86,18 @@ public class SegreteriaStudentiController {
 	void doReset(ActionEvent event) {
 
 	}
+	
+	@FXML
+    void doCerca(ActionEvent event) {
+		
+		if (model.controllaIscritto(this.txtMatricola.getText(), this.corsoSelector.getValue())) {
+			this.txtAreaOutput.setText("Lo studente frequenta il corso di studi selezionato");
+		}
+		else {
+			this.txtAreaOutput.setText("Lo studente NON frequenta il corso di studi selezionato");
+		}
+
+    }
 
 	@FXML
 	void initialize() {
