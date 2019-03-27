@@ -53,6 +53,9 @@ public class SegreteriaStudentiController {
 	@FXML
 	void doCercaCorsi(ActionEvent event) {
 
+		this.txtAreaOutput.clear();
+		this.txtAreaOutput.setText(model.elencoCorsiIscritti(this.txtMatricola.getText()));
+
 	}
 
 	@FXML

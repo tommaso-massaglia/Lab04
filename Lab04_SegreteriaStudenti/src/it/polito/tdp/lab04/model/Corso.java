@@ -46,6 +46,11 @@ public class Corso {
 		this.periodo = periodo;
 	}
 
+	@Override
+	public String toString() {
+		return "Corso [codins=" + codins + ", crediti=" + crediti + ", nome=" + nome + ", periodo=" + periodo + "]";
+	}
+
 		
 
 }

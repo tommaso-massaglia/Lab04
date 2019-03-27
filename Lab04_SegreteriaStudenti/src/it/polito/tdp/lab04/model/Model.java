@@ -67,5 +67,20 @@ public class Model {
 		}
 		return elenco;
 	}
+	
+	public String elencoCorsiIscritti(String matricola) {
+		StudenteDAO studentetemp = new StudenteDAO();
+		String elenco = "";
+		this.setElencoStudenti();
+		for (Studente s : studenti.values()) {
+			if (s.getMatricola().equals(matricola)) {
+				for (String c : studentetemp.getCorsiIscritto(s)) {
+					elenco += corsi.get(c).toString() + "\n";
+				}
+			}
+
+		}
+		return elenco;
+	}
 
 }

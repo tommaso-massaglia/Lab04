@@ -34,8 +34,39 @@ public class StudenteDAO {
 				elencostudenti.add(nuovo);
 
 			}
-			
+
 			return elencostudenti;
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			throw new RuntimeException("Errore Db");
+		}
+	}
+
+	public ArrayList<String> getCorsiIscritto(Studente studente) {
+
+		ArrayList<String> elencocorsi = new ArrayList<String>();
+
+		final String sql = "SELECT codins FROM iscrizione WHERE matricola = ? ";
+
+		try {
+			Connection conn = ConnectDB.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setInt(1, Integer.parseInt(studente.getMatricola()));
+
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+
+				String codins = rs.getString("codins");
+
+				System.out.println(codins);
+
+				elencocorsi.add(codins);
+
+			}
+
+			return elencocorsi;
 
 		} catch (SQLException e) {
 			// e.printStackTrace();
