@@ -10,8 +10,6 @@ import it.polito.tdp.lab04.model.Studente;
 
 public class StudenteDAO {
 
-	
-
 	public ArrayList<Studente> getElencoStudenti() {
 
 		final String sql = "SELECT cognome, nome, CDS, matricola FROM studente";
@@ -36,7 +34,7 @@ public class StudenteDAO {
 				elencostudenti.add(nuovo);
 
 			}
-
+			
 			return elencostudenti;
 
 		} catch (SQLException e) {

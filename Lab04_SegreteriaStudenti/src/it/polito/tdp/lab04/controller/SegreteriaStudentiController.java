@@ -100,7 +100,6 @@ public class SegreteriaStudentiController {
 		this.model = model;
 		this.corsoSelector.setItems(model.getCorsi());
 		this.corsoSelector.getItems().add("");
-		;
 		this.corsoSelector.setValue("");
 	}
 
