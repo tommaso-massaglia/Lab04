@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,6 +37,9 @@ public class CorsoDAO {
 
 				System.out.println(codins + " " + numeroCrediti + " " + nome + " " + periodoDidattico);
 
+				Corso nuovo = new Corso(codins, numeroCrediti, nome, periodoDidattico);
+				corsi.add(nuovo);
+
 				// Crea un nuovo JAVA Bean Corso
 				// Aggiungi il nuovo oggetto Corso alla lista corsi
 			}
@@ -58,8 +62,35 @@ public class CorsoDAO {
 	/*
 	 * Ottengo tutti gli studenti iscritti al Corso
 	 */
-	public void getStudentiIscrittiAlCorso(Corso corso) {
-		// TODO
+	public ArrayList<String> getStudentiIscrittiAlCorso(Corso corso) {
+
+		ArrayList<String> elencoiscritti = new ArrayList<String>();
+
+		final String sql = "SELECT matricola FROM iscrizione WHERE codins = ? ";
+
+		try {
+			Connection conn = ConnectDB.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setString(1, corso.getCodins());
+
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+
+				String matricola = rs.getString("matricola");
+
+				System.out.println(matricola);
+
+				elencoiscritti.add(matricola);
+
+			}
+
+			return elencoiscritti;
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			throw new RuntimeException("Errore Db");
+		}
 	}
 
 	/*
