@@ -79,6 +79,14 @@ public class SegreteriaStudentiController {
 
 	@FXML
 	void doIscrivi(ActionEvent event) {
+		
+		try {
+			model.iscriviStudente(this.txtMatricola.getText(), this.corsoSelector.getValue());
+			this.txtAreaOutput.setText("Studente iscritto con successo");
+		}
+		catch (NullPointerException e) {
+			this.txtAreaOutput.setText("Studente o Corso non trovati");
+		}
 
 	}
 

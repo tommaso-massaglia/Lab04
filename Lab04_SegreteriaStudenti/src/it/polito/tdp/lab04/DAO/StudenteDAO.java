@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import it.polito.tdp.lab04.model.Corso;
 import it.polito.tdp.lab04.model.Studente;
 
 public class StudenteDAO {
@@ -67,6 +68,26 @@ public class StudenteDAO {
 			}
 
 			return elencocorsi;
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
+			throw new RuntimeException("Errore Db");
+		}
+	}
+	
+	public void iscriviStudente(Studente studente, Corso corso) {
+
+		final String sql = "INSERT INTO iscrizione(matricola, codins) VALUES (?, ?)";
+		
+		System.out.println(studente.toString()+" "+corso.toString());
+
+		try {
+			Connection conn = ConnectDB.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setInt(1, Integer.parseInt(studente.getMatricola()));
+			st.setString(2, corso.getCodins());
+
+			st.executeUpdate();
 
 		} catch (SQLException e) {
 			// e.printStackTrace();

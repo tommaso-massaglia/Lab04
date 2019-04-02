@@ -107,4 +107,19 @@ public class Model {
 		return elenco;
 	}
 
+	public void iscriviStudente(String matricola, String nomecorso) {
+		StudenteDAO studentetemp = new StudenteDAO();
+		for (Corso c : corsi.values()) {
+			if (c.getNome().equals(nomecorso)) {
+				if (corsi.containsKey(c.getCodins()) && studenti.containsKey(matricola)) {
+					studentetemp.iscriviStudente(studenti.get(matricola), corsi.get(c.getCodins()));
+
+					return ;
+				}
+			}
+
+		}
+		throw new NullPointerException("Studente o corso non esistenti");
+	}
+
 }
